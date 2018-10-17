@@ -1,11 +1,14 @@
 .item-style() {
     .title {
-        width: 60px;
+        width: 80px;
         white-space: nowrap;
         font-size: 60px;
     }
     ul {
+        width: 800px;
         padding: 50px 50px 0 0;
+        overflow: hidden;
+        // transition: width 1s ease;
         li {
             margin: 0 30px;
             a {
@@ -30,3 +33,18 @@
 }
 
 .item-style();
+
+.fold{
+    animation: fold 1s 1 ease forwards;
+}
+.unfold{
+    animation: unfold 1s 1 ease forwards;
+}
+@keyframes fold{
+    from{width:800px}
+    to{width: 0;}
+}
+@keyframes unfold{
+    from{width: 0;}
+    to{width: 800px;}
+}
