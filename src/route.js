@@ -1,10 +1,9 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
-import App from './App'
+import Home from './page/home/Home'
 
 export default ()=>{
     return [
-        <Route path="/123" component={App} />
-
+        <Route path="/" component={Home} key="1" exact />,
     ]
 }
