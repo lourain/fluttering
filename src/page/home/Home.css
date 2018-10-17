@@ -3,40 +3,16 @@
   width: 100%;
   overflow: auto;
   position: relative;
-  background: #b7ae8f;
 }
 .home header {
-  width: 100%;
-  height: 450px;
-  filter: contrast(70%);
-  background: url('../../img/banner.jpg') no-repeat 0 0 / cover;
+  position: fixed;
+  top: 20%;
+  font-size: 100px;
+  white-space: nowrap;
+  animation: title 3s 1 ease-in-out;
 }
-.home section {
-  width: 100%;
-}
-.home section ul {
-  width: inherit;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.home section ul li {
-  width: 40%;
-  height: 300px;
-  list-style: none;
-}
-.home section ul li:nth-child(1) {
-  background: coral;
-}
-.home section ul li:nth-child(2) {
-  background: yellowgreen;
-}
-.home section ul li:nth-child(3) {
-  background: skyblue;
-}
-.home section ul li:nth-child(4) {
-  background: hotpink;
-}
-.home section ul li:nth-child(5) {
-  background: orange;
+@keyframes title {
+  from {
+    opacity: 0;
+  }
 }

@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
-import styles from './Home.css'
+import styles from './Home.less'
 class App extends Component {
   render() {
     return (
       <div className={styles.home}>
-        <header></header>
-        <section>
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </section>
+        
+        <header>风满楼</header>
+        
       </div>
     )
   }
