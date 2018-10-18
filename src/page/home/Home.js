@@ -5,21 +5,17 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-
+            broadcastFold:true
         }
     }
-    toggle(boolean){
-        console.log(boolean);            
-    }
     render() {
-        // console.log(this);
-        
+        const {broadcastFold} = this.state
         return (
             <div className={styles.home}>
                 <header>风满楼</header>
                 <div className={styles.content}>
-                    <ClassItem itemName={'游记'}/>
-                    <ClassItem itemName={'心情'}/>
+                    <ClassItem itemName={'游记'} broadcastFold={broadcastFold}/>
+                    <ClassItem itemName={'心情'} broadcastFold={broadcastFold}/>
                 </div>
             </div>
         )
