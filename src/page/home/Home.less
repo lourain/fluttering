@@ -44,6 +44,7 @@
     }
     .content {
         margin: 200px 500px 0 0;
+        .item-style();
     }
 }
 
@@ -51,4 +52,19 @@
     from {
         opacity: 0;
     }
+}
+
+.fold{
+    animation: fold 1s 1 ease forwards;
+}
+.unfold{
+    animation: unfold 1s 1 ease forwards;
+}
+@keyframes fold{
+    from{width:800px}
+    to{width: 0;}
+}
+@keyframes unfold{
+    from{width: 0;}
+    to{width: 800px;}
 }
