@@ -3,6 +3,13 @@
         width: 80px;
         white-space: nowrap;
         font-size: 60px;
+        transition: color 1s ease;
+        cursor: pointer;
+        &:hover{
+            color:rgba(255, 255, 255, .8);
+            color: #ffa60f;
+
+        }
     }
     ul {
         width: 800px;
@@ -10,12 +17,19 @@
         overflow: hidden;
         li {
             margin: 0 30px;
+           
             a {
                 display: flex;
                 overflow: hidden;
                 flex-direction: row;
                 align-items: center;
                 font-size: 40px;
+                transition: color 1s ease;
+                &:hover{
+                    color:rgba(255, 255, 255, .5);
+                    color: #c09351;
+                    color: #ffa60f;
+                }
                 img {
                     display: block;
                     width: 100px;

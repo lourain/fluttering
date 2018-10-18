@@ -66,7 +66,6 @@ class App extends Component {
                     {
                         data.map((item, index) => {
                             return (
-
                                 <div key={index}>
                                     <div className={styles.title} onClick={this.toggle.bind(this,index)}>{item.item_name}</div>
                                     <ul className={item.fold ? styles.fold : styles.unfold}>
@@ -79,11 +78,9 @@ class App extends Component {
                                                             <p>{article.article_title}</p>
                                                         </a>
                                                     </li>
-
                                                 )
                                             })
                                         }
-
                                     </ul>
                                 </div>
 
