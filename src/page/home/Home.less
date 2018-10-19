@@ -5,10 +5,9 @@
         font-size: 60px;
         transition: color 1s ease;
         cursor: pointer;
-        &:hover{
-            color:rgba(255, 255, 255, .8);
+        &:hover {
+            color: rgba(255, 255, 255, .8);
             color: #d2b42c;
-
         }
     }
     ul {
@@ -17,7 +16,6 @@
         overflow: hidden;
         li {
             margin: 0 30px;
-           
             a {
                 display: flex;
                 overflow: hidden;
@@ -25,8 +23,8 @@
                 align-items: center;
                 font-size: 40px;
                 transition: color 1s ease;
-                &:hover{
-                    color:rgba(255, 255, 255, .5);
+                &:hover {
+                    color: rgba(255, 255, 255, .5);
                     color: #c09351;
                     color: #d2b42c;
                 }
@@ -70,17 +68,32 @@
     }
 }
 
-.fold{
+.fold {
     animation: fold 1.5s 1 ease forwards;
 }
-.unfold{
+
+.unfold {
     animation: unfold 1.5s 1 ease forwards;
 }
-@keyframes fold{
-    from{width:800px;opacity: 1;}
-    to{width: 0;opacity: 0;}
+
+@keyframes fold {
+    from {
+        width: 800px;
+        opacity: 1;
+    }
+    to {
+        width: 0;
+        opacity: 0;
+    }
 }
-@keyframes unfold{
-    from{width: 0;opacity: 0;}
-    to{width: 800px;opacity: 1;}
+
+@keyframes unfold {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 800px;
+        opacity: 1;
+    }
 }
