@@ -16,7 +16,7 @@ class classItem extends Component {
         })
     }
     render() {
-        const { itemData, broadcastFold } = this.props
+        const { itemData } = this.props
         const { fold } = this.state
         console.log(fold)
         return (

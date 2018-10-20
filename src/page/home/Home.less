@@ -49,12 +49,21 @@
     overflow: hidden;
     position: relative;
     header {
+        display: flex;
         position: fixed;
         top: 10%;
         right: 10%;
+        align-items: center;
+        justify-content: space-between;
         font-size: 100px; // font-family: 'lixuke';
         white-space: nowrap;
         animation: title 3s 1 ease-in-out;
+        p{
+            padding-bottom: 30px;
+        }
+        img{
+            width: 180px;
+        }
     }
     .content {
         margin: 200px 500px 0 0;
