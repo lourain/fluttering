@@ -42,7 +42,13 @@
         }
     }
 }
-
+@font-face{
+    font-family: 'zhuan';
+    src:url('./HuaKangHaiBaoTiW12-P-1.ttf');
+}
+.seal{
+    font-family: 'zhuan';
+}
 .home {
     box-sizing: border-box;
     width: 100%;
@@ -59,10 +65,16 @@
         white-space: nowrap;
         animation: title 3s 1 ease-in-out;
         p{
+            // font-family: 'zhuan';
             padding-bottom: 30px;
         }
         img{
             width: 180px;
+        }
+        .logo{
+            width: 100px;
+            height: 100px;
+            background: url('../../img/logo.png') no-repeat center/contain;
         }
     }
     .content {
