@@ -40,6 +40,7 @@ class App extends Component {
             v.fold = true
         })
     }
+
     toggle(index) {
         let new_data = this.state.data
         new_data.forEach((value, i) => {
