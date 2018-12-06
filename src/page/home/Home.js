@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './Home.less'
 import autumn from '../../img/antumn.webp'
 import Lotus from '../../img/logo.png'
-
+import request from '../../request'
 class App extends Component {
     constructor() {
         super()
@@ -40,7 +40,16 @@ class App extends Component {
             v.fold = true
         })
     }
-
+    componentWillMount(){
+        this.getData()
+    }
+    getData() {
+        request('get','/detail')
+            .then(data=>{
+                console.log(data);
+                
+            })
+    }
     toggle(index) {
         let new_data = this.state.data
         new_data.forEach((value, i) => {
