@@ -75,11 +75,11 @@ class App extends Component {
                     {/* <img src={Lotus} alt="" /> */}
                     <div className={styles.logo}></div>
                 </header>
-                <div className={styles.seal}>
+                {/* <div className={styles.seal}>
                     <p>风</p>
                     <p>满</p>
                     <p>楼</p>
-                </div>
+                </div> */}
                 <div className={styles.content}>
                     {
                         data.map((item, index) => {
