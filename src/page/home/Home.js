@@ -7,46 +7,51 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            broadcastFold: true,
-            data: [
-                {
-                    item_name: '游记',
-                    list: [
-                        { article_title: '深秋于苏' },
-                        { article_title: '深秋于苏深秋于苏深秋于苏' },
-                        { article_title: '深秋于苏' },
-                    ]
-                },
-                {
-                    item_name: '心情',
-                    list: [
-                        { article_title: '深秋于苏' },
-                        { article_title: '深秋于苏深秋于苏深秋于苏' },
-                        { article_title: '深秋于苏' },
-                    ]
-                },
-                {
-                    item_name: '图片',
-                    list: [
-                        { article_title: '深秋于苏' },
-                        { article_title: '深秋于苏深秋于苏深秋于苏' },
-                        { article_title: '深秋于苏' },
-                    ]
-                }
+            // data: [
+            //     {
+            //         item_name: '游记',
+            //         list: [
+            //             { title: '深秋于苏' },
+            //             { title: '深秋于苏深秋于苏深秋于苏' },
+            //             { title: '深秋于苏' },
+            //         ]
+            //     },
+            //     {
+            //         item_name: '心情',
+            //         list: [
+            //             { title: '深秋于苏' },
+            //             { title: '深秋于苏深秋于苏深秋于苏' },
+            //             { title: '深秋于苏' },
+            //         ]
+            //     },
+            //     {
+            //         item_name: '图片',
+            //         list: [
+            //             { title: '深秋于苏' },
+            //             { title: '深秋于苏深秋于苏深秋于苏' },
+            //             { title: '深秋于苏' },
+            //         ]
+            //     }
 
-            ]
+            // ]
+            data:[]
         }
-        this.state.data.forEach(v => {
-            v.fold = true
-        })
+        
     }
     componentWillMount(){
         this.getData()
+        
     }
     getData() {
-        request('get','/detail')
-            .then(data=>{
-                console.log(data);
+        request('get','/directory')
+            .then(res=>{
+                let _data = res.data
+                _data.forEach(v=>{
+                    v.fold = true
+                })
+                this.setState({
+                    data:_data
+                })
                 
             })
     }
@@ -57,17 +62,16 @@ class App extends Component {
                 value.fold = !value.fold
             } else {
                 value.fold = true
-
             }
         })
         this.setState({
             data: new_data
         })
-
+        new_data = null
     }
     render() {
         const { data } = this.state
-
+        
         return (
             <div className={styles.home}>
                 <header>
@@ -75,11 +79,6 @@ class App extends Component {
                     {/* <img src={Lotus} alt="" /> */}
                     <div className={styles.logo}></div>
                 </header>
-                {/* <div className={styles.seal}>
-                    <p>风</p>
-                    <p>满</p>
-                    <p>楼</p>
-                </div> */}
                 <div className={styles.content}>
                     {
                         data.map((item, index) => {
@@ -93,7 +92,8 @@ class App extends Component {
                                                     <li key={index}>
                                                         <a href="/detail">
                                                             <img src={autumn} alt="" />
-                                                            <p>{article.article_title}</p>
+                                                            {/* <div className="img" styles={{backgroundImage:'require('+autumn+')'}}></div> */}
+                                                            <p>{article.title||article.album_name}</p>
                                                         </a>
                                                     </li>
                                                 )
