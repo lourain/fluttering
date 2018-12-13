@@ -270,9 +270,9 @@ module.exports = {
             test: cssRegex,
             exclude: cssModuleRegex,
             use: getStyleLoaders({
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            //   localIdentName: '[path][name]__[local]--[hash:base64:5]',
               importLoaders: 1,
-              modules: true,
+            //   modules: true,
 
             }),
           },
@@ -282,8 +282,8 @@ module.exports = {
             test: cssModuleRegex,
             use: getStyleLoaders({
               importLoaders: 1,
-              modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            //   modules: true,
+            //   localIdentName: '[path][name]__[local]--[hash:base64:5]',
               getLocalIdent: getCSSModuleLocalIdent,
             }),
           },
