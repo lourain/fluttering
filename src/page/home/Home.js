@@ -3,6 +3,7 @@ import styles from './Home.less'
 import autumn from '../../img/antumn.webp'
 import Lotus from '../../img/logo.png'
 import request from '../../request'
+
 class App extends Component {
 	constructor() {
 		super()
@@ -44,7 +45,6 @@ class App extends Component {
 	}
 	render() {
 		const { data } = this.state
-
 		return (
 			<div className={styles.home}>
 				<header>
@@ -53,7 +53,6 @@ class App extends Component {
 				</header>
 				<div className={styles.content}>
 					{
-						
 						data.map((item, index) => {
 							return (
 								<div key={index}>
@@ -63,7 +62,7 @@ class App extends Component {
 											item.list.map((article, index) => {
 												return (
 													<li key={index}>
-														<a href="/detail">
+														<a href={'/detail?id='+article._id}>
 															<img src={autumn} alt="" />
 															<p>{article.title || article.album_name}</p>
 														</a>
