@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import style from './article.less'
 import marked from 'marked'
 import hljs from 'highlight.js'
-// import mstyle from 'highlight.js/styles/atom-one-dark.css';
-import 'highlight.js/styles/atom-one-dark.css';
+import 'highlight.js/styles/brown-paper.css';
 import request from '../../request'
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -46,13 +45,12 @@ export default class Article extends Component {
   }
 	render() {
     const {article} = this.state
-    console.log(article.content);
-    
+
 		return (
-			<div className={"article"}>
+			<div className={style.article}>
         <h1>{article.title}</h1>
         <div className={style.time}>{article.time}</div>
-        <div className={"markdown "} dangerouslySetInnerHTML={{__html:article.content}}></div>
+        <div className={style.markdown} dangerouslySetInnerHTML={{__html:article.content}}></div>
 			</div>
 		)
 	}

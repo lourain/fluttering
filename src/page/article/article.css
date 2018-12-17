@@ -1,4 +1,20 @@
 .article {
   writing-mode: horizontal-tb;
   font-family: '微软雅黑';
+  text-align: left;
+  width: 80%;
+  margin: 50px auto;
+}
+.article h1 {
+  text-align: center;
+}
+.article .time {
+  text-indent: 2em;
+}
+.article .markdown p {
+  line-height: 3;
+}
+.article .markdown pre {
+  padding: 10px 5px;
+  background-color: #bbb;
 }

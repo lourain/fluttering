@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'lixuke';
+  src: url('lixuke.ttf');
+}
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'lixuke';
+  color: #444;
+  background: #f9f4dc url('../img/texture.png');
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: #444;
+}
+ul,
+li {
+  list-style-type: none;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
