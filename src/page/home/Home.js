@@ -54,6 +54,7 @@ class App extends Component {
 				<div className={styles.content}>
 					{
 						data.map((item, index) => {
+              let path = item.path
 							return (
 								<div key={index}>
 									<div className={styles.title} onClick={this.toggle.bind(this, index)}>{item.item_name}</div>
@@ -62,7 +63,7 @@ class App extends Component {
 											item.list.map((article, index) => {
 												return (
 													<li key={index}>
-														<a href={'/detail?id='+article._id}>
+														<a href={path+'?id='+article._id}>
 															<img src={autumn} alt="" />
 															<p>{article.title || article.album_name}</p>
 														</a>
