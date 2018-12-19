@@ -12,7 +12,7 @@ export default class Ablum extends Component {
     this.getPic(id)  
   }
   getPic(id) {
-    request('get',`/ablum?id=${id}`)
+    request('get',`/api/ablum?id=${id}`)
       .then(res=>{
         console.log(res.data);
         
