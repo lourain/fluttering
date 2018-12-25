@@ -35,7 +35,7 @@ export default class Article extends Component {
 
   }
   getArticle(id) {
-    request('get',`/api/detail?id=${id}`)
+    request('get',`/detail?id=${id}`)
       .then(res=>{
         res.data.content = marked(res.data.content || "", { sanitize: true })
         this.setState({

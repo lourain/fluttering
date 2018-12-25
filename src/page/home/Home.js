@@ -17,7 +17,7 @@ class App extends Component {
 
 	}
 	getData() {
-		request('get', '/api/directory')
+		request('get', '/directory')
 			.then(res => {
 				let _data = res.data
 				_data.forEach(v => {
