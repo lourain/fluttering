@@ -115,5 +115,7 @@
     "less-loader": "^4.1.0",
     "marked": "^0.5.2"
   },
+
+  "homepage" : ".",
   "proxy": "http://localhost:9999"
 }

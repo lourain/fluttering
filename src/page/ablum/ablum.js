@@ -9,7 +9,7 @@ export default class Ablum extends Component {
   }
   componentWillMount() {
     let id = window.location.search.slice(4)
-    this.getPic(id)  
+    this.getPic(id)
   }
   getPic(id) {
     request('get',`/api/ablum?id=${id}`)
