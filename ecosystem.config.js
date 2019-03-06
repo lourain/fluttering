@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: 'API',
+    name: 'fluttering-ssr',
     script: 'npm',
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
@@ -24,7 +24,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'git@github.com:lourain/fluttering.git',
       path : '/root/fluttering/flutter-ssr',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : 'git pull && npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
 };

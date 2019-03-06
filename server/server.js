@@ -33,10 +33,10 @@ app.use('/api', proxy({
 function preRequest(url) {
     switch (url) {
         case '/':
-            var address = 'http://localhost:9999/api/directory'
+            var address = 'http://www.fluttering.cn/api/directory'
             break;
         default:
-            var address = `http://localhost:9999/api${url}`
+            var address = `http://www.fluttering.cn/api${url}`
             break;
     }
     return new Promise((resolve, reject) => {
