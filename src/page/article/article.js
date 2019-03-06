@@ -4,6 +4,7 @@ import marked from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/brown-paper.css';
 import request from '../../request'
+import {connect} from 'react-redux'
 marked.setOptions({
   renderer: new marked.Renderer(),
   gfm: true,
@@ -22,19 +23,28 @@ marked.setOptions({
   }
 });
 
-export default class Article extends Component {
+class Article extends Component {
 	constructor() {
     super()
     this.state = {
       article:[]
     }
 	}
-  componentWillMount() {
-    let id = window.location.search.slice(4)
-    this.getArticle(id)    
+  componentDidMount() {
+    if (typeof window === 'undefined') {
+      return false
+    }
+    if(window.__initData__){
+      this.setState({
+        article:window.__initData__
+      })
+    }else{
+      this.getArticle()    
+    }
 
   }
-  getArticle(id) {
+  getArticle() {
+    let id = window.location.search.slice(4)
     request('get',`/api/detail?id=${id}`)
       .then(res=>{
         res.data.content = marked(res.data.content || "", { sanitize: true })
@@ -44,6 +54,8 @@ export default class Article extends Component {
       })
   }
 	render() {
+    console.log(this.props.receive_data);
+    
     const {article} = this.state
 
 		return (
@@ -55,3 +67,9 @@ export default class Article extends Component {
 		)
 	}
 }
+const mapStateToProps = state=>{
+  return {
+    receive_data: state.receive_data
+  }
+}
+export default connect(mapStateToProps)(Article)
