@@ -31,12 +31,14 @@ class Article extends Component {
     }
 	}
   componentDidMount() {
-    if (typeof window === 'undefined') {
-      return false
-    }
+    // if (typeof window === 'undefined') {
+    //   return false
+    // }
     if(window.__initData__){
+      let data = window.__initData__.data
+      // data.content = marked(data.content || "", { sanitize: true })
       this.setState({
-        article:window.__initData__
+        article:data
       })
     }else{
       this.getArticle()    
@@ -54,10 +56,9 @@ class Article extends Component {
       })
   }
 	render() {
-    console.log(this.props.receive_data);
+    let {receive_data} = this.props
+    let article = receive_data.data?receive_data.data:this.state.article
     
-    const {article} = this.state
-
 		return (
 			<div className={style.article}>
         <h1>{article.title}</h1>

@@ -12,6 +12,7 @@ import {createStore} from 'redux'
 import { Provider } from 'react-redux'
 import request from '../src/request'
 import reducer from '../src/store/rootReducer'
+import marked from 'marked'
 // console.log(manifestPath);
 
 assetHook({
@@ -30,8 +31,6 @@ app.use('/api', proxy({
     }
 }))
 function preRequest(url) {
-    console.log(url);
-    
     switch (url) {
         case '/':
             var address = 'http://localhost:9999/api/directory'
@@ -42,9 +41,14 @@ function preRequest(url) {
     }
     return new Promise((resolve, reject) => {
         request('get', address).then(res => {
-            console.log(res);
-            
+            if(url.indexOf('detail') !== -1){
+                let data = res.data
+                data.content = marked(data.content || "", { sanitize: true })
+            }
+            console.log(res)
             resolve(res)
+            
+            
         })
     })
 }
