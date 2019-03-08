@@ -7,7 +7,7 @@ module.exports = {
     args: 'run server',
     instances: 1,
     autorestart: true,
-    watch: false,
+    watch: true,
     max_memory_restart: '1G',
     env: {
       NODE_ENV: 'development'
@@ -19,12 +19,12 @@ module.exports = {
 
   deploy : {
     production : {
-      user : 'node',
+      user : 'root',
       host : '122.152.219.175',
       ref  : 'origin/master',
-      repo : 'git@github.com:lourain/fluttering.git',
+      repo : 'https://github.com/lourain/fluttering.git',
       path : '/root/fluttering/flutter-ssr',
-      'post-deploy' : 'git pull && npm install && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : 'git pull && cnpm install && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
