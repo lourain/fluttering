@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import style from './article.less'
 import marked from 'marked'
 import hljs from 'highlight.js'
-import 'highlight.js/styles/brown-paper.css';
+import 'highlight.js/styles/tomorrow.css';
 import request from '../../request'
 import {connect} from 'react-redux'
 marked.setOptions({
