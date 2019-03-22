@@ -57,10 +57,7 @@ app.get('*', async (req, res, next) => {
     if (req.url.indexOf('/static') !== -1) {
         return next()
     }
-    if(req.url === '/favicon.ico'){
-        return
-    }
-    if(req.url == '/undefined'){
+    if(req.url === '/undefined'){
         return
     }
 
@@ -86,7 +83,8 @@ app.get('*', async (req, res, next) => {
             <meta charset="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-            <title>Document</title>
+            <title>風滿樓</title>
+            <link rel="shortcut icon" href="/favicon.ico"/>
             <link rel="stylesheet" href="${manifestPath['main.css']}"/>
             <link rel="stylesheet" href="${manifestPath["static/css/1.61951e68.chunk.css"]}"/>
             <link rel="stylesheet" href="http://www.fluttering.cn/uploads/lixuke.css">
@@ -114,8 +112,11 @@ app.get('*', async (req, res, next) => {
         res.end()
     })
 })
-
-app.use('/', express.static(path.resolve(__dirname, '../build')))
+const options = {
+    maxAge:3600*24*100,
+    etag:true
+}
+app.use('/', express.static(path.resolve(__dirname, '../build'),options))
 
 
 app.listen(9000, function () {
