@@ -57,8 +57,8 @@ app.get('*', async (req, res, next) => {
     if (req.url.indexOf('/static') !== -1) {
         return next()
     }
-    if(req.url === '/undefined'){
-        return
+    if(req.url === '/favicon'){
+        return next()
     }
 
     var preloadedState = await preRequest(req.url)
@@ -87,7 +87,7 @@ app.get('*', async (req, res, next) => {
             <link rel="shortcut icon" href="/favicon.ico"/>
             <link rel="stylesheet" href="${manifestPath['main.css']}"/>
             <link rel="stylesheet" href="${manifestPath["static/css/1.61951e68.chunk.css"]}"/>
-            <link rel="stylesheet" href="http://www.fluttering.cn/uploads/lixuke.css">
+            <link rel="stylesheet" href="https://www.fluttering.cn/uploads/lixuke.css">
         </head>
         <body>
             <div id="root">
