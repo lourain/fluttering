@@ -45,7 +45,6 @@ function preRequest(url) {
                 let data = res.data
                 data.content = marked(data.content || "", { sanitize: true })
             }
-            console.log(res)
             resolve(res)
             
             
@@ -57,7 +56,7 @@ app.get('*', async (req, res, next) => {
     if (req.url.indexOf('/static') !== -1) {
         return next()
     }
-    if(req.url === '/favicon'){
+    if(req.url === '/favicon.ico'){
         return next()
     }
 
