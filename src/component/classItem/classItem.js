@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import autumn from '../../img/antumn.webp'
+import autumn from '../../img/antumn.png'
 import styles from './classItem.less'
 
 class classItem extends Component {

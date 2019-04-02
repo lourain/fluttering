@@ -89,7 +89,7 @@ class App extends Component {
                         return (
                           <li key={index}>
                             <a href={path + '?id=' + article._id}>
-                              <img src={require('../../img/antumn.png')} alt="" />
+                              <img src={require('../../img/antumn.webp')} alt="" />
                               <p>{article.title || article.album_name}</p>
                             </a>
                           </li>
