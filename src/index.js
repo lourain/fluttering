@@ -8,7 +8,8 @@ import configStore from './store/index'
 // import store from './store/index'
 import { Provider } from 'react-redux'
 
-let store = configStore()
+
+let store = configStore({receive_data:window.__initData__,count:10})
 
 ReactDOM.render(
   <Provider store={store}>

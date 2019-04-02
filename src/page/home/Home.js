@@ -26,7 +26,7 @@ class App extends Component {
     if (typeof window === 'undefined') {
       return false
     }
-    let data = window.__initData__?this.props.receive_data.data:await this.fetchDate()
+    let data = window.__initData__?this.props.receive_data.data:await this.fetchDate()    
     data.forEach(v => {
       v.fold = true
     })
@@ -61,7 +61,6 @@ class App extends Component {
   }
   render() {
     let {receive_data} = this.props
-    // console.log(receive_data);
     // let data = receive_data.data
     // console.log(data);
     // let {data} = this.state
