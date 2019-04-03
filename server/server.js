@@ -113,7 +113,7 @@ app.get('*', async (req, res, next) => {
     })
 })
 const options = {
-    maxAge:3600*24*100,
+    maxAge:3600*24*100*100,
     etag:true
 }
 app.use('/', express.static(path.resolve(__dirname, '../build'),options))
