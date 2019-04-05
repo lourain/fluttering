@@ -91,8 +91,8 @@ app.get('*', async (req, res, next) => {
             <link rel="prefetch" as="font" href="https://www.fluttering.cn/uploads/lixuke.css">
             <link rel="preload" as="image" href="${manifestPath['static/media/Home.less']}">
             <link rel="preload" as="image" href="${manifestPath['static/media/lotus.png']}">
-            <link rel="preload" as="script" href=${manifestPath["static/js/1.37e8ee76.chunk.js"]}/>
-            <link rel="preload" as="script" href=${manifestPath["main.js"]}/>
+            <!--<link rel="preload" as="script" href=${manifestPath["static/js/1.37e8ee76.chunk.js"]}/>-->
+            <!--<link rel="preload" as="script" href=${manifestPath["main.js"]}/>-->
             </head>
         <body>
             <div id="root">
