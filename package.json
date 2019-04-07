@@ -69,7 +69,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "server": "cross-env NODE_ENV=test  babel-node server/server.js"
+    "server": "cross-env NODE_ENV=test nodemon --exec babel-node server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -126,7 +126,8 @@
     "highlight.js": "^9.13.1",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
-    "marked": "^0.5.2"
+    "marked": "^0.5.2",
+    "spdy": "^4.0.0"
   },
   "homepage": ".",
   "proxy": "http://localhost:9999"

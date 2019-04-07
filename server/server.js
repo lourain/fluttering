@@ -8,11 +8,13 @@ import { StaticRouter } from 'react-router-dom'
 import Route from '../src/route'
 import proxy from 'http-proxy-middleware'
 import manifestPath from '../build/asset-manifest.json'
-import {createStore} from 'redux'
+import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import request from '../src/request'
 import reducer from '../src/store/rootReducer'
 import marked from 'marked'
+import http2 from 'spdy'
+import fs from 'fs'
 // console.log(manifestPath);
 
 assetHook({
@@ -22,6 +24,12 @@ assetHook({
 })
 
 const app = express()
+const ssl_options = {
+    // cert: fs.readFileSync('/Users/lyw/Downloads/www.fluttering.cn/Nginx/1_www.fluttering.cn_bundle.crt'),
+    // key: fs.readFileSync('/Users/lyw/Downloads/www.fluttering.cn/Nginx/2_www.fluttering.cn.key'),
+    cert: fs.readFileSync('/etc/nginx/ssl/1_www.fluttering.cn_bundle.crt'),
+    key: fs.readFileSync('/etc/nginx/ssl/2_www.fluttering.cn.key'),
+}
 
 
 app.use('/api', proxy({
@@ -42,31 +50,39 @@ function preRequest(url) {
     }
     return new Promise((resolve, reject) => {
         request('get', address).then(res => {
-            if(url.indexOf('detail') !== -1){
+            if (url.indexOf('detail') !== -1) {
                 let data = res.data
                 data.content = marked(data.content || "", { sanitize: true })
             }
             resolve(res)
-            
-            
+
+
         })
     })
 }
 
 app.get('*', async (req, res, next) => {
+     res.push('/static/media/lotus.png', {
+        status: 200, // optional
+        method: 'GET', // optional
+        response: {
+            'content-type': 'image/png'
+        }
+    })
+
     if (req.url.indexOf('/static') !== -1) {
         return next()
     }
-    if(req.url === '/favicon.ico'){
+    if (req.url === '/favicon.ico') {
         return next()
     }
 
     var preloadedState = await preRequest(req.url)
-    
-    let store = createStore(reducer,{receive_data:preloadedState,count:10})
-    
+
+    let store = createStore(reducer, { receive_data: preloadedState, count: 10 })
+
     const context = {}
-    
+
     const ReactSSR = renderToNodeStream(
         (
             <Provider store={store}>
@@ -89,16 +105,15 @@ app.get('*', async (req, res, next) => {
             <link rel="preload stylesheet" as="style" href="${manifestPath['main.css']}"/>
             <link rel="preload stylesheet" as="style" href="${manifestPath["static/css/1.81851846.chunk.css"]}"/>
             <link rel="prefetch" as="font" href="https://www.fluttering.cn/uploads/lixuke.css">
-            <!--<link rel="preload" as="image" href="${manifestPath['static/media/Home.less']}">-->
-            <!--<link rel="preload" as="image" href="${manifestPath['static/media/lotus.png']}">-->
-            <!--<link rel="preload" as="script" href=${manifestPath["static/js/1.37e8ee76.chunk.js"]}/>-->
+            <link rel="preload" as="image" href="${manifestPath['static/media/Home.less']}">
+            <link rel="preload" as="script" href=${manifestPath["static/js/1.37e8ee76.chunk.js"]}/>
             <!--<link rel="preload" as="script" href=${manifestPath["main.js"]}/>-->
             </head>
         <body>
             <div id="root">
    `
-   
-   
+
+
     // res.send(ReactSSR)
     res.writeHead(200, {
         'Content-Type': 'text/html'
@@ -118,13 +133,15 @@ app.get('*', async (req, res, next) => {
     })
 })
 const options = {
-    maxAge:3600*24*100*100,
-    etag:true
+    maxAge: 3600 * 24 * 100 * 100,
+    etag: true
 }
-app.use('/', express.static(path.resolve(__dirname, '../build'),options))
+app.use('/', express.static(path.resolve(__dirname, '../build'), options))
 
 
-app.listen(9000, function () {
-    console.log('runing... 9000');
-
-})
+http2.createServer(ssl_options, app)
+.listen(9000,function(){
+    console.log('runing...9000');
+    
+    }
+)
