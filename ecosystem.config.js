@@ -24,7 +24,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/lourain/fluttering.git',
       path : '/root/fluttering/flutter-ssr',
-      'post-deploy' : 'git pull && pm2 reload ecosystem.config.js --env production'
+      'post-deploy' : 'git pull && cnpm i && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
