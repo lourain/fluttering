@@ -14,6 +14,7 @@ import request from '../src/request'
 import reducer from '../src/store/rootReducer'
 import marked from 'marked'
 import http2 from 'spdy'
+import http from 'http2'
 import fs from 'fs'
 // console.log(manifestPath);
 
@@ -27,8 +28,10 @@ const app = express()
 const ssl_options = {
     // cert: fs.readFileSync('/Users/lyw/Downloads/www.fluttering.cn/Nginx/1_www.fluttering.cn_bundle.crt'),
     // key: fs.readFileSync('/Users/lyw/Downloads/www.fluttering.cn/Nginx/2_www.fluttering.cn.key'),
-    cert: fs.readFileSync('/etc/nginx/ssl/1_www.fluttering.cn_bundle.crt'),
-    key: fs.readFileSync('/etc/nginx/ssl/2_www.fluttering.cn.key'),
+    // cert: fs.readFileSync('/etc/nginx/ssl/1_www.fluttering.cn_bundle.crt'),
+    // key: fs.readFileSync('/etc/nginx/ssl/2_www.fluttering.cn.key'),
+    cert:fs.readFileSync(path.resolve(__dirname,'../certificate/localhost-cert.pem')),
+    key:fs.readFileSync(path.resolve(__dirname,'../certificate/localhost-privkey.pem'))
 }
 
 
@@ -61,15 +64,11 @@ function preRequest(url) {
     })
 }
 
-app.get('*', async (req, res, next) => {
-     res.push('/static/media/lotus.png', {
-        status: 200, // optional
-        method: 'GET', // optional
-        response: {
-            'content-type': 'image/png'
-        }
-    })
-
+app.get('/',async (req, res, next) => {
+    serverPush(res,'/static/media/logo.png',{'content-type': 'image/png'})
+    serverPush(res,'/static/media/lotus.png',{'content-type': 'image/png'})
+    serverPush(res,'/static/js/main.9a9f0dc6.chunk.js',{'content-type': 'iapplication/javascript'})
+    
     if (req.url.indexOf('/static') !== -1) {
         return next()
     }
@@ -101,18 +100,15 @@ app.get('*', async (req, res, next) => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
             <title>風滿樓</title>
-            <link rel="preload shortcut icon" as="icon" href="/favicon.ico"/>
+            <link rel="shortcut icon"  href="/favicon.ico"/>
             <link rel="preload stylesheet" as="style" href="${manifestPath['main.css']}"/>
             <link rel="preload stylesheet" as="style" href="${manifestPath["static/css/1.81851846.chunk.css"]}"/>
             <link rel="prefetch" as="font" href="https://www.fluttering.cn/uploads/lixuke.css">
             <link rel="preload" as="image" href="${manifestPath['static/media/Home.less']}">
-            <link rel="preload" as="script" href=${manifestPath["static/js/1.37e8ee76.chunk.js"]}/>
-            <!--<link rel="preload" as="script" href=${manifestPath["main.js"]}/>-->
             </head>
         <body>
             <div id="root">
-   `
-
+   ` 
 
     // res.send(ReactSSR)
     res.writeHead(200, {
@@ -145,3 +141,13 @@ http2.createServer(ssl_options, app)
     
     }
 )
+
+var serverPush = function(res,_path,response){
+    res.push(_path, {
+        status: 200, // optional
+        method: 'GET', // optional
+        request: { "accept": "*/*" },
+        response: response
+    })
+    .end(fs.readFileSync(path.resolve(__dirname,`../build${_path}`)))
+}
