@@ -26,12 +26,12 @@ assetHook({
 
 const app = express()
 const ssl_options = {
-    // cert: fs.readFileSync('/Users/lyw/Downloads/www.fluttering.cn/Nginx/1_www.fluttering.cn_bundle.crt'),
-    // key: fs.readFileSync('/Users/lyw/Downloads/www.fluttering.cn/Nginx/2_www.fluttering.cn.key'),
-    // cert: fs.readFileSync('/etc/nginx/ssl/1_www.fluttering.cn_bundle.crt'),
-    // key: fs.readFileSync('/etc/nginx/ssl/2_www.fluttering.cn.key'),
-    cert:fs.readFileSync(path.resolve(__dirname,'../certificate/localhost-cert.pem')),
-    key:fs.readFileSync(path.resolve(__dirname,'../certificate/localhost-privkey.pem'))
+    cert: fs.readFileSync('/Users/lyw/Downloads/www.fluttering.cn/Nginx/1_www.fluttering.cn_bundle.crt'),
+    key: fs.readFileSync('/Users/lyw/Downloads/www.fluttering.cn/Nginx/2_www.fluttering.cn.key'),
+     //cert: fs.readFileSync('/etc/nginx/ssl/1_www.fluttering.cn_bundle.crt'),
+     //key: fs.readFileSync('/etc/nginx/ssl/2_www.fluttering.cn.key'),
+    //cert:fs.readFileSync(path.resolve(__dirname,'../certificate/localhost-cert.pem')),
+    //key:fs.readFileSync(path.resolve(__dirname,'../certificate/localhost-privkey.pem'))
 }
 
 
@@ -65,9 +65,9 @@ function preRequest(url) {
 }
 
 app.get('/',async (req, res, next) => {
-    serverPush(res,'/static/media/logo.png',{'content-type': 'image/png'})
-    serverPush(res,'/static/media/lotus.png',{'content-type': 'image/png'})
-    serverPush(res,'/static/js/main.9a9f0dc6.chunk.js',{'content-type': 'iapplication/javascript'})
+    // serverPush(res,'/static/media/logo.png',{'content-type': 'image/png'})
+    // serverPush(res,'/static/media/lotus.png',{'content-type': 'image/png'})
+    // serverPush(res,'/static/js/main.9a9f0dc6.chunk.js',{'content-type': 'iapplication/javascript'})
     
     if (req.url.indexOf('/static') !== -1) {
         return next()
@@ -134,13 +134,13 @@ const options = {
 }
 app.use('/', express.static(path.resolve(__dirname, '../build'), options))
 
-
-http2.createServer(ssl_options, app)
-.listen(9000,function(){
-    console.log('runing...9000');
+app.listen(9000)
+// http2.createServer(ssl_options, app)
+// .listen(9000,function(){
+//     console.log('runing...9000');
     
-    }
-)
+//     }
+// )
 
 var serverPush = function(res,_path,response){
     res.push(_path, {
