@@ -13,8 +13,6 @@ import { Provider } from 'react-redux'
 import request from '../src/request'
 import reducer from '../src/store/rootReducer'
 import marked from 'marked'
-// import logger from 'morgan'
-import fs from 'fs'
 import log4js from 'log4js'
 // console.log(manifestPath);
 
@@ -63,7 +61,7 @@ function preRequest(url) {
     })
 }
 
-app.get('/', async (req, res, next) => {
+app.get('*', async (req, res, next) => {
     if (req.url.indexOf('/static') !== -1) {
         return next()
     }
