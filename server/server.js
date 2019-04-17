@@ -72,6 +72,8 @@ app.get('*', async (req, res, next) => {
     var preloadedState = await preRequest(req.url)
 
     let store = createStore(reducer, { receive_data: preloadedState, count: 10 })
+    console.log(store.getState().receive_data);
+    
 
     const context = {}
 
@@ -128,7 +130,6 @@ app.use('/', express.static(path.resolve(__dirname, '../build'), options))
 
 app.listen(9000, function () {
     console.log('runing...9000');
-
 })
 } catch (error) {
     logger.error(error)
